@@ -5,10 +5,15 @@ from src.calculations import FinancingInputs, YearMetricsInputs, calculate_finan
 from src.components import inputs, metrics, charts
 
 st.set_page_config(
-    page_title="Daleview Pool Financial Calculator",
+    page_title="Daleview Pool Financial Calculator",  # Browser tab title
     page_icon="💰",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
 )
 
 def check_password():
