@@ -149,8 +149,7 @@ def render_warning_messages(future_surplus: float, year_5_surplus: float) -> Non
         state = "deficit" if initial_surplus < 0 else "surplus"
         future_state = "deficit" if future_surplus < 0 else "surplus"
         
-        msg = (f"This scenario results in an initial {state} of ${abs(initial_surplus):,.0f}\n\n"
-               f"Year 5 projection shows a {future_state} of ${abs(future_surplus):,.0f}")
+        msg = (f"This scenario results in an initial {state} of ${abs(initial_surplus):,.0f}")
         
         if initial_surplus > 0 and initial_surplus < 10000:
             msg = f"Caution: This scenario leaves a very small initial surplus of ${initial_surplus:,.0f}"

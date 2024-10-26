@@ -119,28 +119,20 @@ def render_projections_table(projections: pd.DataFrame) -> None:
         
         display_df = projections.copy()
         
-        # Format currency columns
-        currency_columns = ['Revenue', 'Operating_Expenses', 'Debt_Service', 'Operating_Surplus']
+        # Format currency columns with consistent names
+        currency_columns = ['Revenue', 'Operating Expenses', 'Debt Service', 'Operating Surplus']
         for col in currency_columns:
             if col in display_df.columns:
-                display_df[col] = display_df[col].apply(lambda x: f"${x:,.0f}")
+                # Format as currency with no decimal places
+                display_df[col] = display_df[col].apply(lambda x: f"${int(round(x)):,}")
         
-        # Format percentage columns
-        if 'Debt_Percentage' in display_df.columns:
-            display_df['Debt_Percentage'] = display_df['Debt_Percentage'].apply(lambda x: f"{x:.1f}%")
+        # Format percentage column as whole number
+        if 'Debt % of Costs' in display_df.columns:
+            display_df['Debt % of Costs'] = display_df['Debt % of Costs'].apply(lambda x: f"{int(round(x))}%")
         
         # Format year column
         if 'Year' in display_df.columns:
             display_df['Year'] = display_df['Year'].apply(lambda x: f"Year {x}")
-        
-        # Rename columns for display
-        column_names = {
-            'Operating_Expenses': 'Operating Expenses',
-            'Debt_Service': 'Debt Service',
-            'Debt_Percentage': 'Debt % of Costs',
-            'Operating_Surplus': 'Operating Surplus'
-        }
-        display_df = display_df.rename(columns=column_names)
         
         st.dataframe(
             display_df,
