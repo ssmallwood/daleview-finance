@@ -39,3 +39,6 @@ ENV/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Streamlit Auth
+.streamlit/secrets.toml
